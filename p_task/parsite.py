@@ -1,8 +1,9 @@
 import requests
 from requests import ReadTimeout, ConnectTimeout, HTTPError, Timeout, ConnectionError
 from p_task.models import Results
+from celery import shared_task
 
-
+@shared_task
 def parsite(instance):
     address=instance.address
     if not (address.startswith('http') and  address.startswith('https')):
